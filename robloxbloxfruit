@@ -3,13 +3,31 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "WelcomeGUI"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- إنشاء TextLabel
+-- إنشاء TextLabel لعرض رسالة الترحيب
 local textLabel = Instance.new("TextLabel")
 textLabel.Parent = screenGui
-textLabel.Size = UDim2.new(1, 0, 1, 0) -- تجعل النص يغطي الشاشة بالكامل
+textLabel.Size = UDim2.new(1, 0, 0.8, 0) -- النص يشغل 80% من ارتفاع الشاشة
+textLabel.Position = UDim2.new(0, 0, 0, 0)
 textLabel.BackgroundColor3 = Color3.new(1, 1, 1) -- اللون الخلفي (أبيض)
 textLabel.TextColor3 = Color3.new(0, 0, 0) -- لون النص (أسود)
-textLabel.Text = "مرحبا بكم في سكربت وسام المخرب، رسالتي لكم (طيزكم يا اطياز)"
+textLabel.Text = "مرحبا بكم في سكربت وسام المخرب رسالتي لكم (طيزكم يا اطياز)"
 textLabel.TextScaled = true -- تكبير النص ليناسب حجم الـ TextLabel
 textLabel.Font = Enum.Font.SourceSansBold -- نوع الخط
 textLabel.TextSize = 100 -- حجم النص
+
+-- إنشاء زر الخروج
+local exitButton = Instance.new("TextButton")
+exitButton.Parent = screenGui
+exitButton.Size = UDim2.new(0.3, 0, 0.1, 0) -- حجم الزر (30% من عرض الشاشة و10% من الارتفاع)
+exitButton.Position = UDim2.new(0.35, 0, 0.85, 0) -- موقع الزر (في منتصف الشاشة تحت النص)
+exitButton.BackgroundColor3 = Color3.new(1, 0, 0) -- لون الزر (أحمر)
+exitButton.TextColor3 = Color3.new(1, 1, 1) -- لون النص في الزر (أبيض)
+exitButton.Text = "فتح السكربت"
+exitButton.TextScaled = true
+exitButton.Font = Enum.Font.SourceSansBold
+
+-- وظيفة طرد اللاعب عند الضغط على الزر
+exitButton.MouseButton1Click:Connect(function()
+    local player = game.Players.LocalPlayer
+    player:Kick("حسستني انك ملك الغابه لمن تشتي افتح لك السكربت؟ مالك اهبل يازري")
+end)
